@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <!-- Custom Styles -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'identifyCallerApp/login.css' %}">
+</head>
+<body>
+    <!-- Login Form Container -->
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <!-- Display Messages -->
+                <div class="text-center pt-2" style="color: green;">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <!-- Form Header -->
+                <div class="card-header text-center">
+                    <h3>Log In</h3>
+                </div>
+
+                <!-- Form Body -->
+                <div class="card-body">
+                    <form method="POST" action="/login/">
+                        {% csrf_token %}
+                        <!-- Username or Phone Number Field -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username or Phone Number">
+                        </div>
+                        
+                        <!-- Password Field -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        
+                        <!-- Login Button -->
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sign Up Link -->
+                <div class="card-footer text-center">
+                    <span>Don’t have an account? <a href="/signup">Sign Up</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

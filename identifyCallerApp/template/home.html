@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Identify Caller || Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'identifyCallerApp/search_button.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Identify Caller</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="POST" action="/logout/">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-success" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="text-center my-4">
+        <h1>Welcome to Identify Caller</h1>
+    </section>
+
+    <!-- Search by Number -->
+    <div class="container my-4">
+        <div class="d-flex justify-content-center">
+            <div class="search">
+                <form action="{% url 'search_by_number' query='1234567890' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="search_input" type="text" name="number" placeholder="Search by Phone Number...">
+                    <button type="submit" class="search_icon"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search by Name -->
+    <div class="container my-4">
+        <div class="d-flex justify-content-center">
+            <div class="search">
+                <form action="{% url 'search_by_name' query='John' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="search_input" type="text" name="name" placeholder="Search by Name...">
+                    <button type="submit" class="search_icon"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
